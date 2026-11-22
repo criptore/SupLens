@@ -1,0 +1,46 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "suplens"
+version = "0.0.1"
+description = "Catch npm releases that don't match their source repository, before your users install them."
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+requires-python = ">=3.11"
+authors = [{ name = "SupLens contributors" }]
+keywords = ["security", "supply-chain", "npm", "malware", "maintainers"]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python :: 3",
+  "Topic :: Security",
+  "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+suplens = "suplens.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/criptore/SupLens"
+Issues = "https://github.com/criptore/SupLens/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/suplens"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
